@@ -2,7 +2,7 @@
 
 ### 📦 Необхідні навички (Skills)
 - `temp-mail-automation`
-- `link-building`
+- `link-building` - [https://github.com/devcodex2025/link-building-skills](https://github.com/devcodex2025/link-building-skills)
 
 ### 🚀 Інструкції
 1. Завантажити необхідні навички:
