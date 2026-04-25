@@ -1,8 +1,8 @@
 ## 🔧 Завдання автоматизації
 
 ### 📦 Необхідні навички (Skills)
-- `temp-mail-automation`
-- `link-building` - [https://github.com/devcodex2025/link-building-skills](https://github.com/devcodex2025/link-building-skills)
+- `temp-mail-automation` - [https://github.com/devcodex2025/temp-mail-automation-skills](https://github.com/devcodex2025/temp-mail-automation-skills)
+- `link-building` 
 
 ### 🚀 Інструкції
 1. Завантажити необхідні навички:
