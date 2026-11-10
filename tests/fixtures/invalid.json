@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": "10/11/2026 09:42",
+    "site_url": "toolsdirectoryonline.com",
+    "donor_type": "directory",
+    "action": "registration_and_listing",
+    "status": "done",
+    "relevance_score": 42
+  },
+  {
+    "timestamp": "2026-11-10T10:05:03Z",
+    "site_url": "https://thetooldirectory.com",
+    "donor_type": "directory",
+    "action": "registration_and_listing",
+    "target_url": "https://www.generatepasswordto.me/",
+    "status": "success"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "timestamp": "2026-11-10T09:42:17Z",
+    "site_url": "https://toolsdirectoryonline.com",
+    "donor_type": "directory",
+    "relevance_score": 8,
+    "temp_email": "x7k9p2q4@mail.tm",
+    "password": "Pass123!Temp",
+    "action": "registration_and_listing",
+    "anchor_text": "free password generator",
+    "target_url": "https://www.generatepasswordto.me/",
+    "posted_url": "https://toolsdirectoryonline.com/tools/generatepasswordto-me",
+    "status": "success",
+    "http_status": 200,
+    "link_rel": "dofollow",
+    "screenshot": "screenshots/20261110_toolsdirectoryonline.png",
+    "otp_used": "748291",
+    "notes": "Free listing approved on first review; description matched directory tone."
+  },
+  {
+    "timestamp": "2026-11-10T10:05:03Z",
+    "site_url": "https://thetooldirectory.com",
+    "donor_type": "directory",
+    "relevance_score": 7,
+    "temp_email": "m3v8t1r6@mail.tm",
+    "password": "Pass123!Temp",
+    "action": "registration_and_listing",
+    "anchor_text": "GeneratePasswordToMe",
+    "target_url": "https://www.generatepasswordto.me/",
+    "posted_url": "https://thetooldirectory.com/tools/generatepasswordto-me",
+    "status": "pending",
+    "http_status": 200,
+    "link_rel": "unknown",
+    "screenshot": "screenshots/20261110_thetooldirectory.png",
+    "otp_used": "193804",
+    "notes": "Submitted for editorial review; typical review window 24-48 hours."
+  }
+]

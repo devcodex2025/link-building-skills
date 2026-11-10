@@ -1,0 +1,22 @@
+# Campaign artifacts
+
+# Results logs can contain disposable credentials
+link_building_results.json
+link_building_results.*.json
+/screenshots/
+campaigns/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

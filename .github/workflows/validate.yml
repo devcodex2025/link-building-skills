@@ -1,0 +1,35 @@
+name: Validate skill
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate example log
+        run: python tests/validate_results.py examples/link_building_results.json
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Check SKILL.md frontmatter
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          text = Path("SKILL.md").read_text(encoding="utf-8")
+          assert text.startswith("---\n"), "SKILL.md must start with YAML frontmatter"
+          end = text.index("\n---\n", 4)
+          front = text[4:end]
+          for field in ("name:", "description:", "license:", "version:"):
+              assert field in front, f"missing {field}"
+          print("SKILL.md frontmatter OK")
+          PY
