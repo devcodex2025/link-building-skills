@@ -2,6 +2,8 @@
 
 Reference material for Stage 1 (discovery) and Stage 2 (vetting). Treat every entry as a lead, not a guarantee: submission rules, prices, and link attributes change often. Re-check before submitting.
 
+For a bulk list of 1,233 directories and launch platforms, see [`directory-catalog.md`](directory-catalog.md). It is a research catalog, not a submission queue; filter it before opening any form.
+
 ## Search query families
 
 Use several families so the shortlist is not dominated by one kind of site.

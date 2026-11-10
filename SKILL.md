@@ -2,7 +2,7 @@
 name: link-building
 description: White-hat link building and directory submission for a real website. Finds relevant directories, forums, Q&A sites and niche communities, scores donor relevance, creates accounts with a disposable inbox (via temp-mail-automation), verifies OTP codes, publishes a genuinely useful contribution containing the target link, verifies the live URL, and writes an auditable JSON log. Use when asked for link building, backlinks, directory submission, SEO outreach, link prospecting, backlink audit, "submit my site to directories", "build backlinks", "find directories for my tool" or "register and publish a link". Requires only a target URL and a niche.
 license: MIT
-version: 3.2.0
+version: 3.3.0
 compatibility: opencode
 allowed-tools: browser, web_search, fetch, read, write, edit
 metadata:
@@ -88,6 +88,8 @@ Search with multiple query families and record every candidate before vetting:
 Collect for each candidate: URL, donor type, submission URL, account requirement, email policy, link attribute (`dofollow`/`nofollow`/unknown), cost, and moderation notes.
 
 Use [`data/donor-sources.md`](data/donor-sources.md) for source categories, query templates, and a worked set of password-security directories.
+
+For bulk research, use [`data/directory-catalog.md`](data/directory-catalog.md): 1,233 directories, launch platforms, and marketplaces with submission URLs. It is a filterable research catalog, not a submission queue. Never mass-submit the whole catalog; relevance, link policy, cost, and duplicate checks come first.
 
 ---
 

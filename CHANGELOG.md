@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [3.3.0] - 2026-11-10
+
+### Added
+- `data/directory-catalog.md`: 1,233 unique directories, launch platforms, marketplaces, and social channels with submission URLs, split into 23 verified no-login, 890 free, and 320 paid entries.
+- Catalog validation tests for size, unique URLs, sections, and encoding.
+
+### Changed
+- Stage 1 now points to the catalog as a research resource and explicitly forbids mass submission.
+- README explains how to filter the catalog with the existing quality gates.
+
 ## [3.2.0] - 2026-11-10
 
 ### Added

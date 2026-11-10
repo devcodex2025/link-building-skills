@@ -1,7 +1,7 @@
 # Link Building Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.2.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.3.0-blue.svg)](CHANGELOG.md)
 [![OpenCode](https://img.shields.io/badge/OpenCode-compatible-000000.svg)](https://opencode.ai)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -21,6 +21,7 @@ Built for [OpenCode](https://opencode.ai) and designed to work with the companio
 - [Installation](#installation)
 - [Persistent inbox](#persistent-inbox)
 - [Search engine submission](#search-engine-submission)
+- [Directory catalog](#directory-catalog)
 - [Quick start](#quick-start)
 - [Usage examples](#usage-examples)
 - [Inputs](#inputs)
@@ -175,6 +176,20 @@ Only these channels accept a submission that changes something:
 DuckDuckGo, Ecosia, Qwant, Startpage, Yahoo, MetaGer, Rambler, Mail.ru, Meta.ua, Bigmir, Onet, Interia, WP, SAPO, UOL, Terra, Virgilio, Libero, and goo use Google or Bing indexes. Submitting to them separately has no effect; optimize for the upstream index.
 
 Bulk account creation, automated CAPTCHA solving, and mass URL submission are out of scope.
+
+---
+
+## Directory catalog
+
+[`data/directory-catalog.md`](data/directory-catalog.md) is a research catalog of **1,233 unique directories, launch platforms, marketplaces, and social channels**:
+
+- 23 verified no-login entries;
+- 890 free entries;
+- 320 paid entries.
+
+Every entry has a submission URL. The catalog is a research resource, not a submission queue: many entries are generic, dead, account-gated, paid, or irrelevant to a password-security tool. Filter it with the quality gates in `SKILL.md` before opening a single form.
+
+Do not run a mass-submission script against the whole catalog. One relevant listing on a live directory is worth more than a thousand automated submissions, and mass registration violates the skill's guardrails.
 
 ---
 
@@ -408,6 +423,7 @@ Tests cover:
 - duplicate-domain detection
 - malformed and empty logs
 - search engine reference shape, unique IDs, and locale coverage
+- directory catalog size, unique URLs, and required sections
 - inbox matching and OTP extraction helpers
 
 CI runs the same suite on every push via [`.github/workflows/validate.yml`](.github/workflows/validate.yml) when Actions is enabled for the repository.
@@ -427,6 +443,7 @@ link-building-skills/
 ├── .github/workflows/validate.yml    # CI: validate fixtures, run unit tests
 ├── data/
 │   ├── donor-sources.md              # vetted source categories and search queries
+│   ├── directory-catalog.md          # 1,233 directories and launch platforms
 │   ├── search-engines.md             # engines per locale with submission links
 │   └── search-engines.json           # machine-readable engine list
 ├── scripts/
@@ -439,6 +456,7 @@ link-building-skills/
     ├── test_validate_results.py
     ├── test_inbox.py
     ├── test_search_engines.py
+    ├── test_directory_catalog.py
     └── fixtures/
         ├── valid.json
         └── invalid.json
