@@ -2,7 +2,7 @@
 name: link-building
 description: White-hat link building and directory submission for a real website. Finds relevant directories, forums, Q&A sites and niche communities, scores donor relevance, creates accounts with a disposable inbox (via temp-mail-automation), verifies OTP codes, publishes a genuinely useful contribution containing the target link, verifies the live URL, and writes an auditable JSON log. Use when asked for link building, backlinks, directory submission, SEO outreach, link prospecting, backlink audit, "submit my site to directories", "build backlinks", "find directories for my tool" or "register and publish a link". Requires only a target URL and a niche.
 license: MIT
-version: 3.1.0
+version: 3.2.0
 compatibility: opencode
 allowed-tools: browser, web_search, fetch, read, write, edit
 metadata:
@@ -35,6 +35,7 @@ End-to-end, white-hat link building for a real website. The skill turns a target
 | `require_approval` | No | `false` | Pause before every publication. |
 | `audit_only` | No | `false` | Prospect and score only; never submit. |
 | `identity_file` | No | `~/.config/opencode/link-building/identity.json` | Persistent disposable inbox used for every registration. |
+| `close_tabs_after_submission` | No | `true` | Close every browser tab opened by the skill once its result is logged. |
 
 If `niche` is missing, derive it from the target page's title, H1, and meta description, and state the inferred niche before proceeding.
 
@@ -47,6 +48,15 @@ If `niche` is missing, derive it from the target page's title, H1, and meta desc
 - Rotate the address only if a site rejects it or access is lost, and only with operator approval.
 - If a donor requires a branded address, use the operator's branded address instead of the disposable inbox.
 - If `temp-mail-automation` is unavailable, use `python scripts/inbox.py list` and `python scripts/inbox.py wait --subject "<text>" --otp` to read the persistent inbox.
+
+### Tab lifecycle
+
+- Close every tab the skill opens as soon as its result is written to the log. Browser tabs are the largest avoidable memory cost in a long campaign.
+- Keep at most one active tab per donor during registration and publishing.
+- Verification tabs are temporary: close them after reading the result.
+- Never close tabs the operator opened manually.
+- On a CAPTCHA handoff, leave the tab open until the operator resolves it, then log the outcome and close it.
+- If `close_tabs_after_submission` is `false`, keep the tab open only when the operator explicitly asked for it.
 
 ---
 
@@ -151,6 +161,7 @@ One account per donor domain. The same persistent address may be reused across d
 5. Publish or submit for review.
 6. Capture a screenshot of the published state.
 7. If a CAPTCHA, phone verification, ID check, or payment appears: pause, keep the browser on the page, and hand control to the operator. Do not attempt to bypass it.
+8. After the result is logged, close the tab when `close_tabs_after_submission` is `true` (default). Do not close tabs the operator opened manually.
 
 ---
 
@@ -163,12 +174,15 @@ For every submission:
 - Record the link attribute (`rel="nofollow"`, `ugc`, `sponsored`, or `dofollow`).
 - If the content is awaiting moderation, record `status: "pending"` and the expected review window.
 - If the link is missing or the page 404s, record `status: "failed"` with the observed HTTP status.
+- Close the verification tab after the record is written; do not leave it open for the rest of the campaign.
 
 ---
 
 ## Stage 6 — Logging (mandatory)
 
 Append one record per attempt to `link_building_results.json` immediately after verification. Never batch writes at the end of the run.
+
+After the append succeeds, close the submission tab (`browser.tabs.close`) when `close_tabs_after_submission` is enabled. The record and screenshot are the source of truth; the tab is disposable.
 
 ```json
 [
@@ -214,6 +228,7 @@ Summarize for the operator:
 - dofollow vs. nofollow breakdown
 - per-donor one-line reason for skips and failures
 - next actions (re-verify pending links, retry transient failures, add new donor sources)
+- confirmation that all tabs opened by the skill are closed
 
 Keep the summary factual. Do not claim a link is live unless Stage 5 verified it.
 
@@ -227,6 +242,7 @@ Keep the summary factual. Do not claim a link is live unless Stage 5 verified it
 - **Consent for side effects.** Ask before paying, publishing where approval is required, or submitting personal data.
 - **Respect limits.** Honor `robots.txt`, rate limits, and each site's submission policy.
 - **Stop on anti-bot checks.** CAPTCHA, SMS, and ID verification are operator handoffs, not obstacles to defeat.
+- **Close tabs after work.** Every tab opened by the skill is closed after its result is logged; tabs left open waste memory and hide state.
 - **No prohibited tactics.** No PBNs, link exchanges, paid links without disclosure, comment spam, or automated account farms.
 
 ---

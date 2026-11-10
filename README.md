@@ -1,7 +1,7 @@
 # Link Building Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.2.0-blue.svg)](CHANGELOG.md)
 [![OpenCode](https://img.shields.io/badge/OpenCode-compatible-000000.svg)](https://opencode.ai)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -69,7 +69,7 @@ Most "link building" automation is just form spam with a spreadsheet attached. T
 3. **Vetting** — score each donor on topical relevance, link type, moderation risk, and effort. Only qualified donors enter the queue.
 4. **Registration** — load the persistent inbox, create the account, solve email verification automatically when possible.
 5. **Publishing** — write the contribution, place the link with a natural anchor, submit, capture a screenshot.
-6. **Verification** — confirm the post/listing is publicly visible and the link resolves, then append the result to the log.
+6. **Verification** — confirm the post/listing is publicly visible and the link resolves, append the result to the log, and close the tab.
 
 Details and guardrails live in [`SKILL.md`](SKILL.md).
 
@@ -288,6 +288,16 @@ Use one target URL per locale when the site has localized pages. The skill treat
 | `min_relevance` | No | `6` | Donor relevance score (0–10) required to proceed. |
 | `require_approval` | No | `false` | Pause before each publication for operator sign-off. |
 | `audit_only` | No | `false` | Research and score only; never submit. |
+| `identity_file` | No | `~/.config/opencode/link-building/identity.json` | Persistent inbox used for every registration. |
+| `close_tabs_after_submission` | No | `true` | Close every tab opened by the skill once its result is logged. |
+
+### Browser hygiene
+
+- Each submission gets one tab. The tab is closed as soon as the result is written to the log.
+- Verification opens a temporary tab and closes it after the check.
+- The skill never closes tabs the operator opened manually.
+- A CAPTCHA tab stays open only until the operator resolves it, then it is closed too.
+- Set `close_tabs_after_submission` to `false` only when you explicitly want to keep the final page open.
 
 ---
 
