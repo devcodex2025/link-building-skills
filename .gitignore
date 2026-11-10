@@ -1,8 +1,8 @@
 # Campaign artifacts
 
 # Results logs can contain disposable credentials
-link_building_results.json
-link_building_results.*.json
+/link_building_results.json
+/link_building_results.*.json
 /screenshots/
 campaigns/
 
