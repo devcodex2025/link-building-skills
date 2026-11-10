@@ -9,7 +9,7 @@ An agent skill for **white-hat link building**: it finds relevant directories, f
 
 Built for [OpenCode](https://opencode.ai) and designed to work with the companion [`temp-mail-automation`](https://github.com/devcodex2025) skill. The only required inputs are a **target URL** and a **niche**.
 
-> **Tested in production** on a live site — see [Case study: generatepasswordto.me](#case-study-generatepasswordtome) for a real directory run with recorded results.
+> **Tested in production** on a live site — see [Case study: password generator](#case-study-password-generator) for a real directory run with recorded results.
 
 ---
 
@@ -24,7 +24,7 @@ Built for [OpenCode](https://opencode.ai) and designed to work with the companio
 - [Inputs](#inputs)
 - [Output: the results log](#output-the-results-log)
 - [Donor vetting and quality gates](#donor-vetting-and-quality-gates)
-- [Case study: generatepasswordto.me](#case-study-generatepasswordtome)
+- [Case study: password generator](#case-study-password-generator)
 - [Testing](#testing)
 - [Repository structure](#repository-structure)
 - [Compliance and safety](#compliance-and-safety)
@@ -122,7 +122,7 @@ Start a session in the directory where the results log should live, then send:
 Load the temp-mail-automation and link-building skills.
 Use link-building.
 
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Niche: password security and privacy tools
 Max attempts: 10
 Desired anchor: free password generator
@@ -148,7 +148,7 @@ Defaults: up to 10 attempts, automatic anchor selection, results written to `./l
 
 ```text
 Use link-building in directory-only mode.
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Niche: password generator / cybersecurity utilities
 Max attempts: 15
 Allowed donor types: tool directories, startup directories, free-software catalogs
@@ -178,7 +178,7 @@ The run pauses before each publication and shows you the draft. Nothing is poste
 
 ```text
 Use link-building in audit mode.
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Niche: password security
 Produce a donor shortlist with relevance scores and submission requirements.
 Do not register, submit, or publish anything.
@@ -190,7 +190,7 @@ Produces a scored prospect list and writes it to the log with `"status": "candid
 
 ```text
 Use link-building.
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Niche: password security
 Resume from link_building_results.json. Skip every site that already has a success or pending record.
 ```
@@ -203,7 +203,7 @@ The log is the source of truth: domains with `success`, `pending`, or `rejected`
 Завантаж skills temp-mail-automation і link-building.
 Використовуй link-building.
 
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Ніша: генератори паролів та кібербезпека
 Зроби 10 спроб: автоматична реєстрація, логін, публікація.
 ```
@@ -241,8 +241,8 @@ Every attempt appends one record to `link_building_results.json`:
     "password": "Pass123!Temp",
     "action": "registration_and_listing",
     "anchor_text": "free password generator",
-    "target_url": "https://www.generatepasswordto.me/",
-    "posted_url": "https://toolsdirectoryonline.com/tools/generatepasswordto-me",
+    "target_url": "https://example.com/password-generator",
+    "posted_url": "https://toolsdirectoryonline.com/tools/password-generator",
     "status": "success",
     "http_status": 200,
     "link_rel": "dofollow",
@@ -293,13 +293,13 @@ Additional publishing rules:
 
 ---
 
-## Case study: generatepasswordto.me
+## Case study: password generator
 
-A live pilot was run against **https://www.generatepasswordto.me/** — a free, client-side password generator in the password-security niche.
+A live pilot was run for a free, client-side password generator in the password-security niche. The site is intentionally anonymized in this repository.
 
 - **Niche:** password generators, cybersecurity utilities, privacy tools
 - **Donor types:** tool directories, startup directories, free-software catalogs
-- **Outcome:** 2 listings live and verified (both nofollow), 5 submissions awaiting review, 11 donors vetted out, 2 unreachable endpoints. Full records: [`examples/link_building_results.json`](examples/link_building_results.json); narrative: [`examples/case-study-generatepasswordto.md`](examples/case-study-generatepasswordto.md)
+- **Outcome:** 2 listings live and verified (both nofollow), 5 submissions awaiting review, 11 donors vetted out, 2 unreachable endpoints. Full records: [`examples/link_building_results.json`](examples/link_building_results.json); narrative: [`examples/case-study-password-generator.md`](examples/case-study-password-generator.md)
 
 The case study records what was submitted, what is awaiting moderation, what was skipped and why. It is intentionally honest about failures: a useful skill has to report the sites that did not work.
 
@@ -352,7 +352,7 @@ link-building-skills/
 │   └── donor-sources.md              # vetted source categories and search queries
 ├── examples/
 │   ├── link_building_results.json    # real sample log
-│   └── case-study-generatepasswordto.md
+│   └── case-study-password-generator.md
 └── tests/
     ├── validate_results.py
     ├── test_validate_results.py

@@ -55,7 +55,7 @@ intitle:"useful resources" <niche>
 
 ## Worked example: password-security niche
 
-Leads used for the `generatepasswordto.me` pilot. Verify each before use.
+Leads used for the password-security pilot. Verify each before use.
 
 | Domain | Type | Account needed | Notes |
 |---|---|---|---|

@@ -5,7 +5,7 @@ All notable changes to this project are documented here. The format follows [Kee
 ## [Unreleased]
 
 ### Changed
-- Expanded the `generatepasswordto.me` pilot: two listings are now live (MeWebLink, Zearches), five submissions await review, and paid-only/captcha handoffs are documented per donor.
+- Expanded the password-generator pilot: two listings are now live (MeWebLink, Zearches), five submissions await review, and paid-only/captcha handoffs are documented per donor.
 
 ## [3.0.0] - 2026-11-10
 
@@ -16,7 +16,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Repository metadata: MIT license, changelog, contributing guide, CI workflow.
 - JSON schema validator (`tests/validate_results.py`) with unit tests and fixtures.
 - `data/donor-sources.md` with query families and vetted source categories.
-- Real campaign case study for `generatepasswordto.me`.
+- Real campaign case study for a password generator.
 
 ### Changed
 - Results log schema is now validated: required fields, ISO-8601 UTC timestamps, allowed statuses, numeric ranges.

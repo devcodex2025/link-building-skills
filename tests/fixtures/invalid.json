@@ -12,7 +12,7 @@
     "site_url": "https://thetooldirectory.com",
     "donor_type": "directory",
     "action": "registration_and_listing",
-    "target_url": "https://www.generatepasswordto.me/",
+    "target_url": "https://example.com/password-generator",
     "status": "success"
   }
 ]

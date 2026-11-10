@@ -1,12 +1,11 @@
-# Case study: promoting generatepasswordto.me
+# Case study: a password generator directory campaign
 
-A real, unedited run of the skill against **https://www.generatepasswordto.me/** on **10 November 2026**.
+A real, unedited run of the skill on **10 November 2026**. The target site is intentionally anonymized: it is a free, client-side password generator in the password-security niche (12 languages, NIST 800-63B guidance, no account required).
 
-- **Target:** free, client-side password generator (12 languages, NIST 800-63B guidance, no account).
 - **Niche:** password generators, cybersecurity utilities, privacy tools.
 - **Budget:** 10 attempts; 20 donors investigated in total.
 - **Mode:** live, directory-focused.
-- **Contact identity:** `support@generatepasswordto.me` (the site's own published address).
+- **Identity:** a public support address on the target domain was used where a form required one. Names, domains, and logos are redacted in the screenshots.
 
 ## Result summary
 
@@ -24,23 +23,21 @@ Both live links are `rel="ugc nofollow"`. They are real listings with referral a
 
 ### MeWebLink — live, nofollow
 
-- Listing: https://meweblink.com/directory/ (id 5216, category Technology)
 - Submission: public form, no account, no payment.
 - Response: *"Your website passed the automatic checks and is now in the directory."*
 - Link attribute: `rel="ugc nofollow"`.
-- Screenshot: [`screenshots/20261110_meweblink.png`](screenshots/20261110_meweblink.png)
+- Screenshot (site name and search term redacted): [`screenshots/20261110_meweblink.png`](screenshots/20261110_meweblink.png)
 
-![MeWebLink listing for Generate Password To Me](screenshots/20261110_meweblink.png)
+![MeWebLink directory with the listing live](screenshots/20261110_meweblink.png)
 
 ### Zearches — live, nofollow
 
-- Listing: https://zearches.com/directory.php?slug=software-saas (newest first)
 - Submission: public form, no account, no email confirmation.
 - Response: *"Your website was saved and added to the directory."*
 - Link attribute: `rel="ugc nofollow"`.
-- Screenshot: [`screenshots/20261110_zearches.png`](screenshots/20261110_zearches.png)
+- Screenshot (site name and domain redacted): [`screenshots/20261110_zearches.png`](screenshots/20261110_zearches.png)
 
-![Zearches listing for Generate Password To Me](screenshots/20261110_zearches.png)
+![Zearches category with the listing live](screenshots/20261110_zearches.png)
 
 ## Pending submissions
 
@@ -48,9 +45,13 @@ Both live links are `rel="ugc nofollow"`. They are real listings with referral a
 |---|---:|---|---|
 | freenosignup.com | 9/10 | 3–5 days | Directory explicitly excludes tools that require registration; ideal fit. Google Form recorded. |
 | thewebisfree.com | 8/10 | 1–2 days | Free / open-source / privacy-friendly tools only. Contact Form 7 confirmation received. |
-| thetooldirectory.com | 8/10 | 24–48 h | Utilities category, permanent dofollow stated on approval. Site search shows no listing yet. |
-| launchingnext.com | 7/10 | ~4 months | Free queue; $99 fast-track declined. Dofollow DA 51 on publication. |
+| thetooldirectory.com | 8/10 | 24–48 h | Utilities category, permanent dofollow stated on approval. Site search shows no listing yet. Screenshot: [`screenshots/20261110_thetooldirectory.jpeg`](screenshots/20261110_thetooldirectory.jpeg) |
+| launchingnext.com | 7/10 | ~4 months | Free queue; $99 fast-track declined. Dofollow DA 51 on publication. Queue status: [`screenshots/20261110_launchingnext.jpeg`](screenshots/20261110_launchingnext.jpeg) |
 | launchpedia.co | 6/10 | Not stated | Elementor form returned "Your submission was successful." No paid promotion purchased. |
+
+![Free listing submitted for review](screenshots/20261110_thetooldirectory.jpeg)
+
+![Submission queue status](screenshots/20261110_launchingnext.jpeg)
 
 ## Paid-only and reciprocal traps
 
@@ -123,7 +124,6 @@ Machine-readable records: [`link_building_results.json`](link_building_results.j
 
 - Re-check the five pending submissions and update each record with the live `posted_url` and verified `link_rel`.
 - Solve the SaaSHub and AlternativeTo CAPTCHAs in the open tabs, then finish those listings.
-- Submit to `thewebisfree.com` and `freenosignup.com` follow-ups if not approved within their review windows.
 - Explore niche infosec communities only where self-promotion is explicitly allowed.
 - Do not add reciprocal badges for twelve.tools, Fazier, or ToolPilot without operator approval.
 
@@ -131,7 +131,7 @@ Machine-readable records: [`link_building_results.json`](link_building_results.j
 
 ```text
 Use link-building.
-Target URL: https://www.generatepasswordto.me/
+Target URL: https://example.com/password-generator
 Niche: password generators and cybersecurity utilities
 Allowed donor types: directory
 Max attempts: 10
