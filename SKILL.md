@@ -1,6 +1,6 @@
 ---
 name: link-building
-description: White-hat link building and directory submission for a real website. Finds relevant directories, forums, Q&A sites and niche communities, scores donor relevance, creates accounts with a disposable inbox (via temp-mail-automation), verifies OTP codes, publishes a genuinely useful contribution containing the target link, verifies the live URL, and writes an auditable JSON log. Use when asked for link building, backlinks, directory submission, SEO outreach, link prospecting, backlink audit, "прогони сайт по каталогах", "лінкбілдинг", "розмістити посилання", "побудувати беклінки" or "submit my site to directories". Requires only a target URL and a niche.
+description: White-hat link building and directory submission for a real website. Finds relevant directories, forums, Q&A sites and niche communities, scores donor relevance, creates accounts with a disposable inbox (via temp-mail-automation), verifies OTP codes, publishes a genuinely useful contribution containing the target link, verifies the live URL, and writes an auditable JSON log. Use when asked for link building, backlinks, directory submission, SEO outreach, link prospecting, backlink audit, "submit my site to directories", "build backlinks", "find directories for my tool" or "register and publish a link". Requires only a target URL and a niche.
 license: MIT
 version: 3.0.0
 compatibility: opencode
@@ -221,6 +221,7 @@ Keep the summary factual. Do not claim a link is live unless Stage 5 verified it
 The skill is language-agnostic. It should activate for requests such as:
 
 - "build backlinks for ...", "submit my site to directories", "link building campaign", "off-page SEO"
-- «прогони сайт по каталогах», «зроби лінкбілдинг», «розмісти посилання», «побудуй беклінки», «зареєструйся і опублікуй»
+- "link prospecting", "backlink audit", "find directories for my tool"
+- any request that asks to register, publish, and log a link for a target URL
 
 If the request is ambiguous, confirm the target URL and niche before doing any work.

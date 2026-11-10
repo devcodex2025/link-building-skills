@@ -197,16 +197,18 @@ Resume from link_building_results.json. Skip every site that already has a succe
 
 The log is the source of truth: domains with `success`, `pending`, or `rejected` records are never retried automatically.
 
-### 6. Ukrainian prompt (the skill is language-agnostic)
+### 6. Multi-market campaign
 
 ```text
-Завантаж skills temp-mail-automation і link-building.
-Використовуй link-building.
-
+Use link-building.
 Target URL: https://example.com/password-generator
-Ніша: генератори паролів та кібербезпека
-Зроби 10 спроб: автоматична реєстрація, логін, публікація.
+Niche: password security
+Locales: en, es, de, fr
+Desired anchor: free password generator
+Max attempts: 10 per locale
 ```
+
+Use one target URL per locale when the site has localized pages. The skill treats each locale as a separate context and rewrites the contribution for the local audience.
 
 ---
 
