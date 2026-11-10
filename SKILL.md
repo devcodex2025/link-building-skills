@@ -2,7 +2,7 @@
 name: link-building
 description: White-hat link building and directory submission for a real website. Finds relevant directories, forums, Q&A sites and niche communities, scores donor relevance, creates accounts with a disposable inbox (via temp-mail-automation), verifies OTP codes, publishes a genuinely useful contribution containing the target link, verifies the live URL, and writes an auditable JSON log. Use when asked for link building, backlinks, directory submission, SEO outreach, link prospecting, backlink audit, "submit my site to directories", "build backlinks", "find directories for my tool" or "register and publish a link". Requires only a target URL and a niche.
 license: MIT
-version: 3.0.0
+version: 3.1.0
 compatibility: opencode
 allowed-tools: browser, web_search, fetch, read, write, edit
 metadata:
@@ -34,18 +34,30 @@ End-to-end, white-hat link building for a real website. The skill turns a target
 | `min_relevance` | No | `6` | Relevance threshold, 0–10. |
 | `require_approval` | No | `false` | Pause before every publication. |
 | `audit_only` | No | `false` | Prospect and score only; never submit. |
+| `identity_file` | No | `~/.config/opencode/link-building/identity.json` | Persistent disposable inbox used for every registration. |
 
 If `niche` is missing, derive it from the target page's title, H1, and meta description, and state the inferred niche before proceeding.
+
+### Identity policy
+
+- Use **one** persistent disposable inbox for every registration: directories, search engines, forums, and profiles.
+- Read it from `identity_file`. The file contains `provider`, `email`, `password`, `api_base`, and `created_at`.
+- Never create a new inbox per donor or per submission.
+- Keep the file outside the repository and restrict it to the local user account.
+- Rotate the address only if a site rejects it or access is lost, and only with operator approval.
+- If a donor requires a branded address, use the operator's branded address instead of the disposable inbox.
+- If `temp-mail-automation` is unavailable, use `python scripts/inbox.py list` and `python scripts/inbox.py wait --subject "<text>" --otp` to read the persistent inbox.
 
 ---
 
 ## Stage 0 — Preflight
 
 1. Load the `temp-mail-automation` skill if it is available and mark whether it is available.
-2. Verify the browser session: open a tab and confirm `browser_status` / navigation works.
-3. Load `link_building_results.json` from the working directory. If absent, create it with `[]`.
-4. Fetch the target URL and record: title, H1, meta description, niche, brand, canonical URL.
-5. Confirm the campaign parameters with the operator if any of these are unclear: target URL, niche, budget, approval mode.
+2. Load the persistent identity from `identity_file`. If it does not exist, create exactly one inbox and save it there.
+3. Verify the browser session: open a tab and confirm `browser_status` / navigation works.
+4. Load `link_building_results.json` from the working directory. If absent, create it with `[]`.
+5. Fetch the target URL and record: title, H1, meta description, niche, brand, canonical URL.
+6. Confirm the campaign parameters with the operator if any of these are unclear: target URL, niche, budget, approval mode.
 
 Never overwrite an existing log. Only append.
 
@@ -66,6 +78,22 @@ Search with multiple query families and record every candidate before vetting:
 Collect for each candidate: URL, donor type, submission URL, account requirement, email policy, link attribute (`dofollow`/`nofollow`/unknown), cost, and moderation notes.
 
 Use [`data/donor-sources.md`](data/donor-sources.md) for source categories, query templates, and a worked set of password-security directories.
+
+---
+
+## Stage 1b — Search engine submission (optional track)
+
+Search engines are not link donors. Do not register accounts on every engine; submit only where an own-index channel exists.
+
+1. Load [`data/search-engines.md`](data/search-engines.md) and [`data/search-engines.json`](data/search-engines.json).
+2. Confirm `robots.txt`, `sitemap.xml`, canonical tags, and `hreflang` for every locale.
+3. Submit the sitemap once through IndexNow after deploying the key file to the site root.
+4. Submit the sitemap to Google, Bing, Yandex, and the Chinese engines where the operator has verified accounts.
+5. Use public forms only where no account is needed: Coc Coc, Wiby, Marginalia, LetSearch.
+6. Never resubmit a URL that is already pending; record engine, URL, date, and status.
+7. Index resellers and crawl-only engines need no submission; optimize for their upstream index instead.
+
+Search engine submissions are not backlinks. Track them separately from `link_building_results.json`.
 
 ---
 
@@ -97,17 +125,17 @@ Maintain a shortlist in the log as `status: "candidate"` records during audit mo
 
 For each approved donor:
 
-1. Request a fresh inbox from `temp-mail-automation` → `{email, password}`.
+1. Load the persistent identity from `identity_file`. Do not create a new inbox per donor.
 2. Navigate to the registration page and fill the form: email, password, username, and required profile fields.
 3. Use a consistent, honest brand identity. Do not impersonate a real person or company.
 4. Submit the form.
-5. Call `temp_mail_wait_for_otp()` and enter the code if found.
+5. Read the OTP from the persistent inbox and enter it.
    - If no code arrives within 3 minutes, request one resend, wait once more, then ask the operator for the code.
    - If the site rejects disposable domains, stop and log `status: "failed"` with a note.
 6. Complete email verification and confirm the account is active.
 7. Log in with the same credentials and verify the session.
 
-One account per donor domain. Never create sockpuppets or vote rings.
+One account per donor domain. The same persistent address may be reused across donor domains. Never create sockpuppets or vote rings.
 
 ---
 

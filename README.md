@@ -1,7 +1,7 @@
 # Link Building Skill
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)](CHANGELOG.md)
 [![OpenCode](https://img.shields.io/badge/OpenCode-compatible-000000.svg)](https://opencode.ai)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
@@ -19,6 +19,8 @@ Built for [OpenCode](https://opencode.ai) and designed to work with the companio
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Persistent inbox](#persistent-inbox)
+- [Search engine submission](#search-engine-submission)
 - [Quick start](#quick-start)
 - [Usage examples](#usage-examples)
 - [Inputs](#inputs)
@@ -65,7 +67,7 @@ Most "link building" automation is just form spam with a spreadsheet attached. T
 1. **Preflight** — load the skill, check the browser session, load `link_building_results.json` (create `[]` if missing).
 2. **Discovery** — search for directories, forums, niche communities, and Q&A threads that accept submissions in the target's category.
 3. **Vetting** — score each donor on topical relevance, link type, moderation risk, and effort. Only qualified donors enter the queue.
-4. **Registration** — obtain a disposable inbox, create the account, solve email verification automatically when possible.
+4. **Registration** — load the persistent inbox, create the account, solve email verification automatically when possible.
 5. **Publishing** — write the contribution, place the link with a natural anchor, submit, capture a screenshot.
 6. **Verification** — confirm the post/listing is publicly visible and the link resolves, then append the result to the log.
 
@@ -77,7 +79,7 @@ Details and guardrails live in [`SKILL.md`](SKILL.md).
 
 - An agent runtime that supports skills (tested with OpenCode).
 - Browser automation tools (`browser_navigate`, `browser_click`, `browser_snapshot`, `browser_screenshot`) or equivalent MCP tools.
-- The [`temp-mail-automation`](https://github.com/devcodex2025) skill for disposable inboxes and OTP retrieval. If it is unavailable, the skill falls back to operator-provided credentials.
+- The [`temp-mail-automation`](https://github.com/devcodex2025) skill for disposable inboxes and OTP retrieval. If it is unavailable, the skill uses the persistent identity file described below.
 - Python 3.9+ only if you want to run the JSON validator in [`tests/`](tests).
 
 No API keys, paid SEO tools, or captcha-solving services are required.
@@ -112,6 +114,68 @@ Verify the install:
 List the skills you have available and confirm that "link-building" is loaded.
 ```
 
+### Persistent inbox
+
+The skill uses **one** disposable inbox for every registration. It is stored outside the repository:
+
+```text
+~/.config/opencode/link-building/identity.json
+```
+
+```json
+{
+  "provider": "mail.tm",
+  "email": "your-inbox@example.com",
+  "password": "your-inbox-password",
+  "api_base": "https://api.mail.tm",
+  "created_at": "2026-11-10T17:08:43Z",
+  "policy": "single_identity_for_all_submissions"
+}
+```
+
+Rules:
+
+- Reuse this address for directories, search engines, forums, and profiles.
+- Never create a new inbox per donor or per submission.
+- Keep the file outside the repository and readable only by the local user.
+- Rotate it only if a site rejects the address or access is lost, and only with operator approval.
+- If a donor requires a branded address, use the brand address instead.
+
+Read the inbox with the bundled helper when `temp-mail-automation` is unavailable:
+
+```bash
+python scripts/inbox.py list
+python scripts/inbox.py wait --subject "verify" --timeout 180 --otp
+python scripts/inbox.py latest --otp
+```
+
+---
+
+## Search engine submission
+
+Search engines are not link donors. The skill includes a verified reference of own-index engines, index resellers, and crawl-only engines for the 12 supported locales:
+
+- [`data/search-engines.md`](data/search-engines.md) — human-readable table with submission links.
+- [`data/search-engines.json`](data/search-engines.json) — machine-readable list for automation.
+
+Only these channels accept a submission that changes something:
+
+| Channel | Locales | Method |
+|---|---|---|
+| Google Search Console | all | account, sitemap |
+| Bing Webmaster Tools | all | account, sitemap |
+| IndexNow | all | API key file, one batch |
+| Yandex Webmaster | `ru`, `uk` | account, sitemap |
+| Baidu / Sogou / 360 / Shenma | `zh` | account, verification |
+| Coc Coc | `vi` | public form + CAPTCHA |
+| LetSearch | `ru` | public form, Russian content |
+| Marginalia / Wiby | `en` | public form |
+| Right Dao | `en` | email |
+
+DuckDuckGo, Ecosia, Qwant, Startpage, Yahoo, MetaGer, Rambler, Mail.ru, Meta.ua, Bigmir, Onet, Interia, WP, SAPO, UOL, Terra, Virgilio, Libero, and goo use Google or Bing indexes. Submitting to them separately has no effect; optimize for the upstream index.
+
+Bulk account creation, automated CAPTCHA solving, and mass URL submission are out of scope.
+
 ---
 
 ## Quick start
@@ -119,8 +183,7 @@ List the skills you have available and confirm that "link-building" is loaded.
 Start a session in the directory where the results log should live, then send:
 
 ```text
-Load the temp-mail-automation and link-building skills.
-Use link-building.
+Load the link-building skill.
 
 Target URL: https://example.com/password-generator
 Niche: password security and privacy tools
@@ -128,7 +191,7 @@ Max attempts: 10
 Desired anchor: free password generator
 ```
 
-The agent will research donors, register accounts with disposable inboxes, publish contributions, and write `link_building_results.json` plus screenshots as it goes.
+The agent will research donors, reuse the persistent inbox for registrations, publish contributions, and write `link_building_results.json` plus screenshots as it goes.
 
 ---
 
@@ -334,6 +397,8 @@ Tests cover:
 - URL validity for `target_url`, `site_url`, and `posted_url`
 - duplicate-domain detection
 - malformed and empty logs
+- search engine reference shape, unique IDs, and locale coverage
+- inbox matching and OTP extraction helpers
 
 CI runs the same suite on every push via [`.github/workflows/validate.yml`](.github/workflows/validate.yml) when Actions is enabled for the repository.
 
@@ -351,13 +416,19 @@ link-building-skills/
 ├── .gitignore
 ├── .github/workflows/validate.yml    # CI: validate fixtures, run unit tests
 ├── data/
-│   └── donor-sources.md              # vetted source categories and search queries
+│   ├── donor-sources.md              # vetted source categories and search queries
+│   ├── search-engines.md             # engines per locale with submission links
+│   └── search-engines.json           # machine-readable engine list
+├── scripts/
+│   └── inbox.py                      # read the persistent inbox and extract OTP codes
 ├── examples/
 │   ├── link_building_results.json    # real sample log
 │   └── case-study-password-generator.md
 └── tests/
     ├── validate_results.py
     ├── test_validate_results.py
+    ├── test_inbox.py
+    ├── test_search_engines.py
     └── fixtures/
         ├── valid.json
         └── invalid.json

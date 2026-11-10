@@ -2,10 +2,19 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [3.1.0] - 2026-11-10
+
+### Added
+- Search engine reference for the 12 supported locales: `data/search-engines.md` and `data/search-engines.json`, covering own-index engines, index resellers, and crawl-only engines.
+- Persistent identity policy: one disposable inbox stored outside the repository at `~/.config/opencode/link-building/identity.json` and reused for every registration.
+- `scripts/inbox.py` to read the persistent inbox, wait for verification messages, and extract OTP codes.
+- Search engine submission stage (1b) with IndexNow, webmaster tools, and public form guidance.
+- Tests for the engine reference, locale coverage, and inbox helpers.
 
 ### Changed
-- Expanded the password-generator pilot: two listings are now live (MeWebLink, Zearches), five submissions await review, and paid-only/captcha handoffs are documented per donor.
+- Registration no longer creates a new inbox per donor; it loads the persistent identity and reuses it.
+- Quick start and installation docs now describe the persistent inbox setup.
+- Case study updated with two live nofollow listings, five pending submissions, and documented paid and CAPTCHA handoffs.
 
 ## [3.0.0] - 2026-11-10
 
