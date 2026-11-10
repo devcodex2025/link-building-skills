@@ -316,7 +316,7 @@ python tests/validate_results.py examples/link_building_results.json
 Expected output:
 
 ```text
-OK: 7 records valid
+OK: 13 records valid
 ```
 
 Run the full test suite (fixtures, edge cases, exit codes):
@@ -333,7 +333,7 @@ Tests cover:
 - duplicate-domain detection
 - malformed and empty logs
 
-CI runs the same suite on every push via [`.github/workflows/validate.yml`](.github/workflows/validate.yml).
+CI runs the same suite on every push via [`.github/workflows/validate.yml`](.github/workflows/validate.yml) when Actions is enabled for the repository.
 
 ---
 
