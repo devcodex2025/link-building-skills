@@ -2,9 +2,9 @@
 
 A real, unedited run of the skill against **https://www.generatepasswordto.me/** on **10 November 2026**.
 
-- **Target:** free, client-side password generator (English, 12 languages, NIST 800-63B guidance).
+- **Target:** free, client-side password generator (12 languages, NIST 800-63B guidance, no account).
 - **Niche:** password generators, cybersecurity utilities, privacy tools.
-- **Budget:** 10 attempts.
+- **Budget:** 10 attempts; 20 donors investigated in total.
 - **Mode:** live, directory-focused.
 - **Contact identity:** `support@generatepasswordto.me` (the site's own published address).
 
@@ -12,73 +12,120 @@ A real, unedited run of the skill against **https://www.generatepasswordto.me/**
 
 | Outcome | Count |
 |---|---|
-| Submitted and awaiting review (`pending`) | 2 |
-| Failed (donor offline) | 1 |
-| Skipped during vetting | 10 |
-| Confirmed live links (`success`) | 0 |
+| Live and verified (`success`) | 2 |
+| Submitted, awaiting review (`pending`) | 5 |
+| Skipped during vetting | 11 |
+| Failed (endpoint unreachable) | 2 |
+| Dofollow links gained | 0 |
 
-No link is reported as live in this case study. Both accepted submissions are in editorial queues, and the skill does not mark a listing as `success` until the published URL returns 2xx with the target link present.
+Both live links are `rel="ugc nofollow"`. They are real listings with referral and brand value, but the skill does not pretend they pass link equity. No dofollow link can be claimed until a pending listing is published and verified.
 
-## Submissions
+## Live listings
 
-### The Tool Directory — pending
+### MeWebLink — live, nofollow
 
-- Submission URL: https://thetooldirectory.com/submit-a-tool/
-- Account: not required.
-- Category: Utilities.
-- Form: tool name, URL, one-line description, pricing, category, contact email, platforms, audience, use cases, alternatives, logo URL, description.
-- Response: *"Thanks — your listing was submitted for review. Every submission is checked before it appears in the directory."*
-- Link policy (stated by the directory): permanent dofollow link on approved listings.
-- Screenshot: [`screenshots/20261110_thetooldirectory.jpeg`](screenshots/20261110_thetooldirectory.jpeg)
+- Listing: https://meweblink.com/directory/ (id 5216, category Technology)
+- Submission: public form, no account, no payment.
+- Response: *"Your website passed the automatic checks and is now in the directory."*
+- Link attribute: `rel="ugc nofollow"`.
+- Screenshot: [`screenshots/20261110_meweblink.png`](screenshots/20261110_meweblink.png)
 
-![The Tool Directory submission confirmation](screenshots/20261110_thetooldirectory.jpeg)
+![MeWebLink listing for Generate Password To Me](screenshots/20261110_meweblink.png)
 
-### Launching Next — pending
+### Zearches — live, nofollow
 
-- Submission URL: https://www.launchingnext.com/submit/
-- Account: not required; a short arithmetic check gates the form.
-- Response: *"Submission Received — Status: In Queue (Estimated Wait: 4 Months)"*.
-- Link policy (stated by the directory): permanent dofollow link (DA 51) on publication.
-- Upsell: $99 fast-track was offered and **declined**. No payment was made.
-- Screenshot: [`screenshots/20261110_launchingnext.jpeg`](screenshots/20261110_launchingnext.jpeg)
+- Listing: https://zearches.com/directory.php?slug=software-saas (newest first)
+- Submission: public form, no account, no email confirmation.
+- Response: *"Your website was saved and added to the directory."*
+- Link attribute: `rel="ugc nofollow"`.
+- Screenshot: [`screenshots/20261110_zearches.png`](screenshots/20261110_zearches.png)
 
-![Launching Next submission confirmation](screenshots/20261110_launchingnext.jpeg)
+![Zearches listing for Generate Password To Me](screenshots/20261110_zearches.png)
+
+## Pending submissions
+
+| Directory | Fit | Review window | Notes |
+|---|---:|---|---|
+| freenosignup.com | 9/10 | 3–5 days | Directory explicitly excludes tools that require registration; ideal fit. Google Form recorded. |
+| thewebisfree.com | 8/10 | 1–2 days | Free / open-source / privacy-friendly tools only. Contact Form 7 confirmation received. |
+| thetooldirectory.com | 8/10 | 24–48 h | Utilities category, permanent dofollow stated on approval. Site search shows no listing yet. |
+| launchingnext.com | 7/10 | ~4 months | Free queue; $99 fast-track declined. Dofollow DA 51 on publication. |
+| launchpedia.co | 6/10 | Not stated | Elementor form returned "Your submission was successful." No paid promotion purchased. |
+
+## Paid-only and reciprocal traps
+
+These looked free until the submission flow was inspected. None involved a payment.
+
+| Directory | Finding |
+|---|---|
+| joinly.xyz | Public form looks free; a valid POST returns `303` to a PayProGlobal checkout (product 112614). |
+| startups.fm | £49 one-off, no free tier. |
+| startupspotlight.co | $29 one-off, live immediately. |
+| microlaunch.net | `/submit` redirects to the paid premium page. |
+| fazier.com | Free plan requires an embed badge/backlink; paid from $39. |
+| twelve.tools | Free listing requires a reciprocal backlink on the target site. |
+| toolpilot.ai | Free listing requires a badge; not submitted. |
+
+## CAPTCHA handoffs
+
+Two high-value catalogs stop at human verification. The skill filled the forms and left the tabs open; it did not attempt to bypass the challenge.
+
+| Directory | State |
+|---|---|
+| saashub.com | Registration filled with a disposable inbox, blocked by a visible hCaptcha. Links reported as nofollow. |
+| alternativeto.net | Signup filled, but an invisible hCaptcha keeps "Create account" disabled. |
+
+## Failures
+
+| Directory | Finding |
+|---|---|
+| toolsdirectoryonline.com | DNS does not resolve; the site is offline despite 2026 roundups. |
+| chipjourney.com | `/submit` returns 404; requests are refused (406 / tunnel failure). |
+| toolfolio.com | `/submit` and `/submit/new` both render the 404 page. |
 
 ## Vetting decisions
 
-| Donor | Score | Decision | Reason |
-|---|---|:---:|---|
-| thetooldirectory.com | 8 | Submitted | Free, no account, utilities category, permanent dofollow. |
-| launchingnext.com | 7 | Submitted | Free queue, startup audience, dofollow. |
-| toolsdirectoryonline.com | 7 | Failed | DNS does not resolve; site appears offline despite 2026 roundups. |
-| saashub.com | 7 | Deferred | Account needs brand-inbox email verification unavailable to automation. |
-| alternativeto.net | 8 | Deferred | Add-app endpoint returns 404; account required. |
-| twelve.tools | 6 | Skipped | Free tier requires a reciprocal backlink. |
-| fazier.com | 6 | Skipped | Free tier requires a badge/backlink; paid from $39. |
-| startups.fm | 6 | Skipped | Paid only: £49 one-off. |
-| startupspotlight.co | 5 | Skipped | Paid only: $29 one-off. |
-| microlaunch.net | 5 | Skipped | Submit redirects to a paid premium page. |
-| toolfolio.com | 6 | Skipped | Submission endpoints return 404. |
-| futuretools.io | 3 | Skipped | AI-only directory; not topically relevant. |
-| freeaidirectories.com | 3 | Skipped | AI-only directory; not topically relevant. |
+| Donor | Score | Decision |
+|---|---:|:---:|
+| freenosignup.com | 9 | Submitted |
+| thewebisfree.com | 8 | Submitted |
+| thetooldirectory.com | 8 | Submitted |
+| launchingnext.com | 7 | Submitted |
+| mewebliink.com | 7 | Submitted — live |
+| zearches.com | 6 | Submitted — live |
+| launchpedia.co | 6 | Submitted |
+| joinly.xyz | 6 | Skipped — paid checkout |
+| startups.fm | 6 | Skipped — £49 |
+| startupspotlight.co | 5 | Skipped — $29 |
+| microlaunch.net | 5 | Skipped — paid |
+| twelve.tools | 6 | Skipped — reciprocal link |
+| fazier.com | 6 | Skipped — reciprocal link |
+| saashub.com | 7 | Deferred — hCaptcha |
+| alternativeto.net | 8 | Deferred — hCaptcha |
+| toolsdirectoryonline.com | 7 | Failed — offline |
+| chipjourney.com | 6 | Failed — dead endpoint |
+| toolfolio.com | 6 | Skipped — 404 |
+| futuretools.io | 3 | Skipped — AI-only |
+| freeaidirectories.com | 3 | Skipped — AI-only |
 
 Machine-readable records: [`link_building_results.json`](link_building_results.json).
 
 ## What the run proved
 
-1. **The vetting gate works.** Eleven of thirteen candidates were rejected before any form was opened, which is the intended behavior: relevance and link policy come first.
-2. **No-account directories still exist.** Both accepted submissions needed only a public form and a real contact email. Neither required a disposable inbox, so the temp-mail path stayed idle.
-3. **The free-tier landscape is mostly reciprocal or paid.** Six candidates required a backlink badge or a fee. That is a property of the niche's directory market, not a failure of the skill, and it belongs in the log.
-4. **Dead and moved endpoints are common.** Three directories from current roundups were unreachable or had 404 submission pages. Discovery must verify endpoints, not trust listicles.
-5. **Pending is not success.** Both confirmations are recorded as `pending`; a follow-up run must re-check the published URLs before claiming a backlink.
+1. **Small, relevant directories still work.** Seven of twenty donors accepted a submission; two published within minutes.
+2. **"Free" needs verification.** One form that looked free redirected to a checkout only after a valid POST. Checking the submission result, not the landing page, caught it.
+3. **Link attributes matter.** Both instant approvals use `ugc nofollow`. The case study records that explicitly instead of reporting "2 backlinks".
+4. **CAPTCHAs are a real boundary.** SaaSHub and AlternativeTo need a human click. The skill left the forms filled and handed off.
+5. **Dead endpoints are common.** Three of twenty donors were unreachable or had no working submit page.
+6. **The temp-mail path works but is not always the right tool.** A disposable inbox was created for SaaSHub; where a public form accepted the brand address, the brand address was used instead.
 
 ## Follow-up checklist
 
-- Re-check both submissions after their review windows (24–48 h for The Tool Directory, up to 4 months for Launching Next).
-- Update each record to `success` with the live `posted_url` and verified `link_rel` once published.
-- Have the site owner register on SaaSHub and AlternativeTo from `support@generatepasswordto.me`, then finish those two listings manually.
-- Add niche communities (password-security subreddits, infosec forums) in a separate campaign where self-promotion rules allow it.
-- Do not add reciprocal badges for twelve.tools or Fazier unless the operator explicitly approves them.
+- Re-check the five pending submissions and update each record with the live `posted_url` and verified `link_rel`.
+- Solve the SaaSHub and AlternativeTo CAPTCHAs in the open tabs, then finish those listings.
+- Submit to `thewebisfree.com` and `freenosignup.com` follow-ups if not approved within their review windows.
+- Explore niche infosec communities only where self-promotion is explicitly allowed.
+- Do not add reciprocal badges for twelve.tools, Fazier, or ToolPilot without operator approval.
 
 ## Reproduce
 

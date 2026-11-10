@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Changed
+- Expanded the `generatepasswordto.me` pilot: two listings are now live (MeWebLink, Zearches), five submissions await review, and paid-only/captcha handoffs are documented per donor.
+
 ## [3.0.0] - 2026-11-10
 
 ### Added

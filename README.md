@@ -299,7 +299,7 @@ A live pilot was run against **https://www.generatepasswordto.me/** — a free, 
 
 - **Niche:** password generators, cybersecurity utilities, privacy tools
 - **Donor types:** tool directories, startup directories, free-software catalogs
-- **Outcome:** 2 submissions accepted and awaiting review, 10 donors skipped during vetting, 1 dead endpoint, 0 links claimed as live before verification. Full records: [`examples/link_building_results.json`](examples/link_building_results.json); narrative: [`examples/case-study-generatepasswordto.md`](examples/case-study-generatepasswordto.md)
+- **Outcome:** 2 listings live and verified (both nofollow), 5 submissions awaiting review, 11 donors vetted out, 2 unreachable endpoints. Full records: [`examples/link_building_results.json`](examples/link_building_results.json); narrative: [`examples/case-study-generatepasswordto.md`](examples/case-study-generatepasswordto.md)
 
 The case study records what was submitted, what is awaiting moderation, what was skipped and why. It is intentionally honest about failures: a useful skill has to report the sites that did not work.
 
@@ -316,7 +316,7 @@ python tests/validate_results.py examples/link_building_results.json
 Expected output:
 
 ```text
-OK: 13 records valid
+OK: 20 records valid
 ```
 
 Run the full test suite (fixtures, edge cases, exit codes):
